@@ -13,12 +13,11 @@ public class Store {
     boolean addProduct(Product product) {
         if (productCount == products.length || product == null)
             return false;
-        for (int i = 0; i<productCount; i++) {
-            if (products[i].getId() == product.getId())
-                return false;
+        if (this.findProductIndex(product.getId()) == -1) {
+            products[productCount++] = product;
+            return true;
         }
-        products[productCount++] = product;
-        return true;
+        return false;
     }
 
     public int findProductIndex(int id) {
